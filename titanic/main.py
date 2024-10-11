@@ -1,0 +1,25 @@
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+x = pd.read_csv("titanic.csv")
+print(x.head())
+print(x.shape)
+print(x.isnull().sum())
+sns.heatmap(x.isnull(), cmap="winter")
+plt.show()
+print(x.head())
+x.drop("deck", axis=1, inplace=True)
+print(x.head())
+x.dropna(inplace=True)
+sns.heatmap(x.isnull(), cbar=False)
+plt.show()
+pd.get_dummies(x["sex"]).head()
+sex = pd.get_dummies(x["sex"], drop_first=True)
+print(sex.head(4))
+pd.get_dummies(x["embarked"]).head(4)
+arked = pd.get_dummies(x["embarked"], drop_first=True)
+pclass = pd.get_dummies(x["pclass"], drop_first=True)
+pclass.head(4)
+x=pd.concat([x,sex,pclass], asis=1)
+print(x.head())
